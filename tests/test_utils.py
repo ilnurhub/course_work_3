@@ -1,5 +1,5 @@
 from course_work_3.utils.utils import load_json, sort_list_of_dicts, title_and_account, hide_account, \
-    split_four_card_number, find_transfer_date
+    split_four_card_number, find_transfer_date, create_output
 
 
 def test_load_json():
@@ -27,4 +27,18 @@ def test_split_four_card_number():
 
 def test_find_transfer_date():
     assert find_transfer_date('2019-08-26T10:50:58.294041') == '26.08.2019'
+
+
+def test_create_output():
+    assert create_output({'id': 863064926, 'state': 'EXECUTED', 'date': '2019-12-08T22:46:21.935582',
+                          'operationAmount': {'amount': '41096.24', 'currency': {'name': 'USD', 'code': 'USD'}},
+                          'description': 'Открытие вклада', 'to': 'Счет 90424923579946435907'}) == """08.12.2019 Открытие вклада
+  -> Счет **5907
+41096.24 USD"""
+    assert create_output({"id": 518707726, "state": "EXECUTED", "date": "2018-11-29T07:18:23.941293",
+                          "operationAmount": {"amount": "3348.98", "currency": {"name": "USD", "code": "USD"}},
+                          "description": "Перевод с карты на карту", "from": "MasterCard 3152479541115065",
+                          "to": "Visa Gold 9447344650495960"}) == """29.11.2018 Перевод с карты на карту
+MasterCard 3152 47** **** 5065 -> Visa Gold 9447 34** **** 5960
+3348.98 USD"""
 
