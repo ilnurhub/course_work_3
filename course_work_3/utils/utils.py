@@ -82,3 +82,18 @@ def create_output(operation):
         to_account = split_four_card_number(to_account)
     operation_amount = f"{operation['operationAmount']['amount']} {operation['operationAmount']['currency']['name']}"
     return f"""{transfer_date} {description}\n{from_title} {from_account} -> {to_title} {to_account}\n{operation_amount}"""
+
+
+def create_several_executed_outputs(lst, output_counts=5):
+    """
+    Выводит на экран несколько выполненных операций
+    """
+    count = 0
+    idx = 0
+    while count != output_counts:
+        if lst[idx]['state'] == 'EXECUTED':
+            print(create_output(lst[idx]), end='\n\n')
+            count += 1
+            idx += 1
+        else:
+            idx += 1
