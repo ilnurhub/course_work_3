@@ -1,5 +1,5 @@
 from course_work_3.utils.utils import load_json, sort_list_of_dicts, title_and_account, hide_account, \
-    split_four_card_number
+    split_four_card_number, find_transfer_date
 
 
 def test_load_json():
@@ -23,3 +23,8 @@ def test_hide_account():
 
 def test_split_four_card_number():
     assert split_four_card_number('6831982476737658') == '6831 9824 7673 7658'
+
+
+def test_find_transfer_date():
+    assert find_transfer_date('2019-08-26T10:50:58.294041') == '26.08.2019'
+
