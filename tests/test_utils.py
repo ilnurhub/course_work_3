@@ -1,5 +1,5 @@
 from course_work_3.utils.utils import load_json, sort_list_of_dicts, title_and_account, hide_account, \
-    split_four_card_number, find_transfer_date, create_output
+    split_four_card_number, find_transfer_date, create_output, create_several_executed_outputs
 
 
 def test_load_json():
@@ -42,3 +42,11 @@ def test_create_output():
 MasterCard 3152 47** **** 5065 -> Visa Gold 9447 34** **** 5960
 3348.98 USD"""
 
+
+def test_create_several_outputs():
+    assert create_several_executed_outputs([{"id": 518707726, "state": "EXECUTED", "date": "2018-11-29T07:18:23.941293",
+                                             "operationAmount": {"amount": "3348.98",
+                                                                 "currency": {"name": "USD", "code": "USD"}},
+                                             "description": "Перевод с карты на карту",
+                                             "from": "MasterCard 3152479541115065",
+                                             "to": "Visa Gold 9447344650495960"}], output_counts=1) is None
