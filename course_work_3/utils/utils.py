@@ -16,3 +16,12 @@ def sort_list_of_dicts(user_list, sort_key, rev=True):
     """
     sorted_user_list = sorted(user_list, key=lambda d: d.get(sort_key, '0'), reverse=rev)
     return sorted_user_list
+
+
+def title_and_account(title_account):
+    """
+    Возвращает название счета и номер счета
+    """
+    *title_parts, account = title_account.split(' ')
+    title = ' '.join(title_parts)
+    return title, account
