@@ -25,3 +25,14 @@ def title_and_account(title_account):
     *title_parts, account = title_account.split(' ')
     title = ' '.join(title_parts)
     return title, account
+
+
+def hide_account(account):
+    """
+    Маскирует номер карты или счета
+    """
+    if len(account) == 16:
+        masked_account = account[0:6] + '*' * (len(account) - 10) + account[-4:]
+    else:
+        masked_account = '*' * 2 + account[-4:]
+    return masked_account
