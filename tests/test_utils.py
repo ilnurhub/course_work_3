@@ -1,4 +1,5 @@
-from course_work_3.utils.utils import load_json, sort_list_of_dicts, title_and_account, hide_account
+from course_work_3.utils.utils import load_json, sort_list_of_dicts, title_and_account, hide_account, \
+    split_four_card_number
 
 
 def test_load_json():
@@ -18,3 +19,7 @@ def test_title_and_account():
 def test_hide_account():
     assert hide_account('6831982476737658') == '683198******7658'
     assert hide_account('48894435694657014368') == '**4368'
+
+
+def test_split_four_card_number():
+    assert split_four_card_number('6831982476737658') == '6831 9824 7673 7658'
