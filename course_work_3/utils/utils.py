@@ -1,4 +1,5 @@
 import json
+from datetime import date
 
 
 def load_json(file):
@@ -49,3 +50,13 @@ def split_four_card_number(card_number):
         i += 4
     four_digits_blocks = ' '.join(list_of_blocks)
     return four_digits_blocks
+
+
+def find_transfer_date(date_time):
+    """
+    Возвращает дату перевода, представленную в формате ДД.ММ.ГГГГ
+    """
+    transfer_date = date_time.split('T')[0]
+    the_date = date.fromisoformat(transfer_date)
+    date_formatted = the_date.strftime("%d.%m.%Y")
+    return date_formatted
