@@ -1,4 +1,4 @@
-from course_work_3.utils.utils import load_json, sort_list_of_dicts, title_and_account
+from course_work_3.utils.utils import load_json, sort_list_of_dicts, title_and_account, hide_account
 
 
 def test_load_json():
@@ -13,3 +13,8 @@ def test_sort_list_of_dicts():
 
 def test_title_and_account():
     assert title_and_account('Visa Classic 6831982476737658') == ('Visa Classic', '6831982476737658')
+
+
+def test_hide_account():
+    assert hide_account('6831982476737658') == '683198******7658'
+    assert hide_account('48894435694657014368') == '**4368'
