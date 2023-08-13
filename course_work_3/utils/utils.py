@@ -36,3 +36,16 @@ def hide_account(account):
     else:
         masked_account = '*' * 2 + account[-4:]
     return masked_account
+
+
+def split_four_card_number(card_number):
+    """
+    Разбивает номер карты по блокам по 4 цифры
+    """
+    list_of_blocks = []
+    i = 0
+    while i < len(card_number):
+        list_of_blocks.append(card_number[i:i + 4])
+        i += 4
+    four_digits_blocks = ' '.join(list_of_blocks)
+    return four_digits_blocks
