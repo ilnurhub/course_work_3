@@ -60,3 +60,25 @@ def find_transfer_date(date_time):
     the_date = date.fromisoformat(transfer_date)
     date_formatted = the_date.strftime("%d.%m.%Y")
     return date_formatted
+
+
+def create_output(operation):
+    """
+    Возвращает вывод для одной операции
+    """
+    transfer_date = find_transfer_date(operation['date'])
+    description = operation['description']
+    if 'from' in operation:
+        from_title, unmasked_from_account = title_and_account(operation['from'])
+        from_account = hide_account(unmasked_from_account)
+    else:
+        from_title = ''
+        from_account = ''
+    if len(from_account) == 16:
+        from_account = split_four_card_number(from_account)
+    to_title, unmasked_to_account = title_and_account(operation['to'])
+    to_account = hide_account(unmasked_to_account)
+    if len(to_account) == 16:
+        to_account = split_four_card_number(to_account)
+    operation_amount = f"{operation['operationAmount']['amount']} {operation['operationAmount']['currency']['name']}"
+    return f"""{transfer_date} {description}\n{from_title} {from_account} -> {to_title} {to_account}\n{operation_amount}"""
