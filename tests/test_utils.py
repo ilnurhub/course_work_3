@@ -1,9 +1,14 @@
-from course_work_3.utils.utils import load_json, sort_list_of_dicts, title_and_account, hide_account, \
+from course_work_3.utils.utils import json_file_manager, load_json, sort_list_of_dicts, title_and_account, hide_account, \
     split_four_card_number, find_transfer_date, create_output, create_several_executed_outputs
 
 
+def test_json_file_manager():
+    assert json_file_manager(r'tests\test_json.json') == [{"id": 441945886, "state": "EXECUTED"},
+                                                          {"id": 41428829, "state": "EXECUTED"}]
+
+
 def test_load_json():
-    assert load_json('course_work_3/data/test_json.json') == [{"id": 441945886, "state": "EXECUTED"},
+    assert load_json('test_json.json', directory='tests') == [{"id": 441945886, "state": "EXECUTED"},
                                                               {"id": 41428829, "state": "EXECUTED"}]
 
 
