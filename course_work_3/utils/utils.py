@@ -1,14 +1,28 @@
 import json
 from datetime import date
+import os.path
 
 
-def load_json(file):
+def json_file_manager(file_path):
+    """
+    Файловый менеджер для чтения json-файла
+    """
+    with open(file_path, 'r', encoding='utf-8') as f:
+        lst = json.load(f)
+    return lst
+
+
+def load_json(file, directory='data'):
     """
     Читает данные из файла в формате JSON и возвращает список
     """
-    with open(file, 'r', encoding='utf-8') as f:
-        lst = json.load(f)
-    return lst
+    try:
+        file_path = os.path.join('course_work_3', directory, file)
+        res = json_file_manager(file_path)
+    except FileNotFoundError:
+        file_path = os.path.join(directory, file)
+        res = json_file_manager(file_path)
+    return res
 
 
 def sort_list_of_dicts(user_list, sort_key, rev=True):
